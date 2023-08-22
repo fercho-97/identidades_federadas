@@ -6,11 +6,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.dispositivosgrupal.R
 import com.example.dispositivosgrupal.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -26,6 +30,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
+//        binding.btIngreso.setOnClickListener {
+//
+//            authWithFirebaseEmail(
+//                binding.editxtCorreo.text.toString(),
+//                binding.editxtContrasena.text.toString()
+//            )
+//
+//
+//        }
 
         setup()
         session()
@@ -70,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             }
+//luismosquera97@gmail.com
 
         }
 
@@ -107,6 +122,31 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == GOOGLE_SIGN_IN) {
+            // Manejar la respuesta de One Tap aquí
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+            val account = task.getResult(ApiException::class.java)
+            if (account != null) {
+                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showHome(account.email?:"",ProviderType.GOOGLE)
+                    } else {
+                        showAlect()
+                    }
+                }
+            }
+
+        }catch (e: ApiException){
+            showAlect()
+        }
+        }
     }
 
 
