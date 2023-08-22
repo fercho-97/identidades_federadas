@@ -31,16 +31,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
-//        binding.btIngreso.setOnClickListener {
-//
-//            authWithFirebaseEmail(
-//                binding.editxtCorreo.text.toString(),
-//                binding.editxtContrasena.text.toString()
-//            )
-//
-//
-//        }
-
         setup()
         session()
 
@@ -48,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         binding.authLayout.visibility = View.VISIBLE
     }
 
@@ -82,12 +71,8 @@ class LoginActivity : AppCompatActivity() {
 
                     showAlect()
                 }
-
             }
-//luismosquera97@gmail.com
-
         }
-
 
         binding.btIngreso.setOnClickListener {
 
@@ -131,21 +116,22 @@ class LoginActivity : AppCompatActivity() {
             // Manejar la respuesta de One Tap aquí
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-            val account = task.getResult(ApiException::class.java)
-            if (account != null) {
-                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showHome(account.email?:"",ProviderType.GOOGLE)
-                    } else {
-                        showAlect()
-                    }
+                val account = task.getResult(ApiException::class.java)
+                if (account != null) {
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                showHome(account.email ?: "", ProviderType.GOOGLE)
+                            } else {
+                                showAlect()
+                            }
+                        }
                 }
-            }
 
-        }catch (e: ApiException){
-            showAlect()
-        }
+            } catch (e: ApiException) {
+                showAlect()
+            }
         }
     }
 

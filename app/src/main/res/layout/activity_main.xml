@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
-        android:src="@drawable/amazon_final"
+        android:src="@drawable/logo_carre"
         />
 
     <TextView
