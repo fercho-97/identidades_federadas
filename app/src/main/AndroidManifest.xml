@@ -16,9 +16,6 @@
         android:theme="@style/Theme.DispositivosGrupal"
         tools:targetApi="31">
         <activity
-            android:name=".ui.GitHubActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
