@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "793233494965",
+    "project_id": "dispositivosgrupal-d4263",
+    "storage_bucket": "dispositivosgrupal-d4263.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793233494965:android:54cef1895cffcd88dbfffc",
+        "android_client_info": {
+          "package_name": "com.example.dispositivosgrupal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793233494965-motoefordscf5hpunralq8gghvqv4mmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt4ypBMpjqXvHjzmArkK9a4BLuYZL9wsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793233494965-motoefordscf5hpunralq8gghvqv4mmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
